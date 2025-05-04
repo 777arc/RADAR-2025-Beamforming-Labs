@@ -1,3 +1,11 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/python:3.12"
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postCreateCommand": "pipx install -r requirements.txt",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  }
 }
