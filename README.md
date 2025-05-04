@@ -1,5 +1,7 @@
 # RADAR-2025-Beamforming-Labs
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/777arc/RADAR-2025-Beamforming-Labs)
+
 2025 IEEE International Radar Conference, workshop on adaptive beamforming
 
 This repo can be found online at https://github.com/777arc/RADAR-2025-Beamforming-Labs
