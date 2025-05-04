@@ -32,16 +32,9 @@ def update(val):
     polar_plot.set_ydata(w_fft_dB)
     rect_plot.set_ydata(w_fft_dB)
     fig.canvas.draw_idle()
-for i in range(Nr):
-    mag_sliders[i].on_changed(update)
-    phase_sliders[i].on_changed(update)
 
 for i in range(Nr):
-    def update(val):
-        w_fft_dB = beam_pattern()
-        polar_plot.set_ydata(w_fft_dB)
-        rect_plot.set_ydata(w_fft_dB)
-        fig.canvas.draw_idle()
+    mag_sliders[i].on_changed(update)
     phase_sliders[i].on_changed(update)
 
 ax1 = fig.add_subplot(gs[0:5, 3:5], projection = 'polar')

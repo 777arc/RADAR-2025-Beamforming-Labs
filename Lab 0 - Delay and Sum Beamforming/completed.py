@@ -1,4 +1,4 @@
-# the following goes at the end of starter.py, to produce a polar plot instead of rectangular
+# ... the following goes at the end of starter.py, to produce a polar plot instead of rectangular
 
 # Visualize the beam pattern (don't worry as much about this part)
 N_fft = 1024

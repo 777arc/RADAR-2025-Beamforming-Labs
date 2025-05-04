@@ -13,14 +13,14 @@ t = np.arange(N)/sample_rate # time vector
 f_tone = 0.02e6
 tx = np.exp(2j * np.pi * f_tone * t)
 s = np.exp(-2j * np.pi * d * np.arange(Nr) * np.sin(theta_jammer))
-s = s.reshape(-1,1) # make s a column vector (3x1)
+s = s.reshape(-1,1) # make s a column vector (8x1)
 tx = tx.reshape(1,-1) # make tx a row vector (1x10000)
 
 # Simulate the received signal X through a matrix multiply
 X = s @ tx 
-print(X.shape) # 3x10000.  X is now going to be a 2D array, 1D is time and 1D is the spatial dimension
+print(X.shape) # 8x10000.  X is now going to be a 2D array, 1D is time and 1D is the spatial dimension
 n = np.random.randn(Nr, N) + 1j*np.random.randn(Nr, N)
-X = X + 0.5*n # X and n are both 3x10000
+X = X + 0.5*n # X and n are both 8x10000
 
 # Let's point at the SOI at 15 deg, and another potential SOI that we didn't actually simulate at 60 deg
 soi1_theta = 15 / 180 * np.pi # convert to radians
