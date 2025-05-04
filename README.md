@@ -2,14 +2,18 @@
 
 2025 IEEE International Radar Conference, workshop on adaptive beamforming
 
+This repo can be found online at https://github.com/777arc/RADAR-2025-Beamforming-Labs
+
 ## No-Install Option - GitHub Codespaces
 
 1. Log into GitHub
-2. Go to https://codespaces.new/777arc/RADAR-2025-Beamforming-Labs
+2. Go to https://codespaces.new/777arc/RADAR-2025-Beamforming-Labs and click green button to create new codespace
 3. It will create a new codespace in your github account, with Python and some packages preinstalled
 4. You should see a web-based VSCode interface, which has the labs as directories
 
 At any time you can stop or delete codespaces from https://github.com/codespaces/
+
+Note that we set up the GitHub Codespaces prebuild system, where every push to this repo causes a Codespaces image to be built, so that it's much faster for folks to spin up a new codespace of this repo.
 
 ## Install Option
 
