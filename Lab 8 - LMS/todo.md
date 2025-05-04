@@ -1,0 +1,1 @@
+- Try changing the learning rate and observing the error over time, as well as final beam pattern

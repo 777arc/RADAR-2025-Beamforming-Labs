@@ -1,0 +1,1 @@
+- Try changing the resolution and note how fast the program runs, and how nice the results look

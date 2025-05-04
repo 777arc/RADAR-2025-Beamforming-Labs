@@ -1,0 +1,1 @@
+- By changing the variable nulls, play around with the number of interferers and where they are located, eg what if two are very close together?

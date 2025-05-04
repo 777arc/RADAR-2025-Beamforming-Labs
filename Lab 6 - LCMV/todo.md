@@ -1,0 +1,1 @@
+- If you increase the noise, e.g. from 0.5 to 5.0 on line 23, how well is it able to null the interferer?
