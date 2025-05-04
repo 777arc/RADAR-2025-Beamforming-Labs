@@ -13,6 +13,7 @@ This repo can be found online at https://github.com/777arc/RADAR-2025-Beamformin
 3. It will create a new codespace in your github account, with Python and some packages preinstalled, it will take a minute, once the play button shows up in the top-right corner when you have a 
 4. You should see a web-based VSCode interface, which has the labs as directories
 5. Use the .ipynb versions of the lab code
+6. For each lab, there's a Run All button at the top, or control-enter is a hotkey for running an individual code cell
 
 At any time you can stop or delete codespaces from https://github.com/codespaces/
 

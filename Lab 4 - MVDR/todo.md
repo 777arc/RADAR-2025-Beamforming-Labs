@@ -1,1 +1,3 @@
 - Add one or two more interferers
+- What if you direct the beam towards the jammers?
+- What happens to the main lobe towards the signal of interest?
