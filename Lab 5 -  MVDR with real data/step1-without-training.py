@@ -31,9 +31,28 @@ results_temp[int(len(results)*0.4):] = -9999*np.ones(int(len(results)*0.6))
 max_angle = theta_scan[np.argmax(results_temp)] # radians
 print("max_angle:", max_angle)
 
+# DOA results
 plt.plot(theta_scan * 180/np.pi, results)
 plt.xlabel('Angle (degrees)')
 plt.ylabel('Power (dB)')
 plt.grid()
 plt.show()
 
+# MVDR weights towards C
+s = np.exp(-2j * np.pi * d * np.arange(Nr) * np.sin(max_angle)) # steering vector in the desired direction theta
+s = s.reshape(-1,1) # make into a column vector (size 3x1)
+w = (Rinv @ s)/(s.conj().T @ Rinv @ s) # MVDR/Capon equation
+
+# Visualize the beam pattern if we point towards C
+N_fft = 1024
+w = w.squeeze() # remove the extra dimension (size 3x1 -> size 3)
+w = np.conj(w) # or else our answer will be negative/inverted
+w_padded = np.concatenate((w, np.zeros(N_fft - Nr))) # zero pad to N_fft elements to get more resolution in the FFT
+w_fft_dB = 10*np.log10(np.abs(np.fft.fftshift(np.fft.fft(w_padded)))**2) # magnitude of fft in dB
+theta_bins = np.arcsin(np.linspace(-1, 1, N_fft)) # Map the FFT bins to angles in radians)
+plt.plot(np.rad2deg(theta_bins), w_fft_dB) # MAKE SURE TO USE RADIAN FOR POLAR
+plt.axvline(x=np.rad2deg(max_angle), color='green', linestyle='--', label='max angle')
+plt.grid()
+plt.xlabel('Angle (degrees)')
+plt.ylabel('Power (dB)')
+plt.show()

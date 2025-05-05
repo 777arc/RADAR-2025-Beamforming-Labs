@@ -20,7 +20,7 @@ Nr = X.shape[0]
 
 max_angle = -0.34073979726153913 # found in step 1, this is the DOA of C in radians
 
-# Calc MVDR weights using training Rinv
+# Calc MVDR weights towards C using training Rinv
 s = np.exp(-2j * np.pi * d * np.arange(Nr) * np.sin(max_angle)) # steering vector in the desired direction theta
 s = s.reshape(-1,1) # make into a column vector (size 3x1)
 w = (Rinv_training @ s)/(s.conj().T @ Rinv_training @ s) # MVDR/Capon equation
@@ -31,12 +31,11 @@ w = w.squeeze() # remove the extra dimension (size 3x1 -> size 3)
 w = np.conj(w) # or else our answer will be negative/inverted
 w_padded = np.concatenate((w, np.zeros(N_fft - Nr))) # zero pad to N_fft elements to get more resolution in the FFT
 w_fft_dB = 10*np.log10(np.abs(np.fft.fftshift(np.fft.fft(w_padded)))**2) # magnitude of fft in dB
-theta_bins = np.arcsin(np.linspace(-1, 1, N_fft)) # Map the FFT bins to angles in radians
-fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
-ax.plot(theta_bins, w_fft_dB) # MAKE SURE TO USE RADIAN FOR POLAR
-ax.set_theta_zero_location('N') # type: ignore # make 0 degrees point up
-ax.set_theta_direction(-1) # type: ignore # increase clockwise
-ax.set_thetamin(-90) # type: ignore # only show top half
-ax.set_thetamax(90) # type: ignore
-ax.set_ylim((-30, 2)) # because there's no noise, only go down 30 dB
+theta_bins = np.arcsin(np.linspace(-1, 1, N_fft)) # Map the FFT bins to angles in radians)
+plt.plot(np.rad2deg(theta_bins), w_fft_dB) # MAKE SURE TO USE RADIAN FOR POLAR
+plt.axvline(x=np.rad2deg(max_angle), color='green', linestyle='--', label='max angle')
+plt.grid()
+plt.xlabel('Angle (degrees)')
+plt.ylabel('Power (dB)')
 plt.show()
+
