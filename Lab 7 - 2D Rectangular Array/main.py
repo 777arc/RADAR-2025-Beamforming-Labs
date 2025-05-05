@@ -8,6 +8,7 @@ Nr = 15
 rows = 3
 cols = 5
 
+# Load our received samples.  r_cal is only the calibration signal (at boresight) on
 r = np.load("DandB_capture1.npy")[0:15] # 16th element is not connected
 r_cal = np.load("C_only_capture1.npy")[0:15]
 
@@ -70,6 +71,9 @@ def get_unit_vector(theta, phi):  # angles are in radians
                         np.sin(phi)]).T              # z component
 
 
+#######
+# DOA #
+#######
 resolution = 400 # number of points in each direction
 theta_scan = np.linspace(-np.pi/2, np.pi/2, resolution) # azimuth angles
 phi_scan = np.linspace(-np.pi/4, np.pi/4, resolution) # elevation angles
@@ -97,7 +101,7 @@ for i, theta_i in enumerate(theta_scan):
         #resp = w.conj().T @ r
         #results[i, j] = np.abs(resp)[0,0] # power in signal, in dB
 
-# 3D
+# 3D az-el DOA results
 results = 10*np.log10(results) # convert to dB
 results[results < -20] = -20 # crop the z axis to some level of dB
 fig, ax = plt.subplots(subplot_kw={"projection": "3d", "computed_zorder": False})
@@ -111,7 +115,7 @@ ax.set_ylabel('Elevation (phi)')
 ax.set_zlabel('Power [dB]') # type: ignore
 plt.show()
 
-# 2D, theta-phi heatmap
+# 2D, az-el heatmap (same as above, but 2D)
 extent=(np.min(theta_scan)*180/np.pi,
         np.max(theta_scan)*180/np.pi,
         np.min(phi_scan)*180/np.pi,
