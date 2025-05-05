@@ -23,7 +23,8 @@ def beam_pattern():
     w = w_mags * np.exp(1j * w_phases)
     w = np.conj(w) # or else our answer will be negative/inverted
     w_padded = np.concatenate((w, np.zeros(N_fft - Nr))) # zero pad to N_fft elements to get more resolution in the FFT
-    w_fft_dB = 10*np.log10((np.abs(np.fft.fftshift(np.fft.fft(w_padded)*Nr))**2)/N_fft) # magnitude of fft in dB
+    w_fft = np.abs(np.fft.fftshift(np.fft.fft(w_padded)*Nr))**2
+    w_fft_dB = 10*np.log10(w_fft / N_fft + 0.000000001) # magnitude of fft in dB
     return w_fft_dB
 
 # Sliders should trigger update
