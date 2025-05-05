@@ -10,7 +10,7 @@ This repo can be found online at https://github.com/777arc/RADAR-2025-Beamformin
 
 1. Log into GitHub
 2. Go to https://codespaces.new/777arc/RADAR-2025-Beamforming-Labs and click green button to create new codespace
-3. It will create a new codespace in your github account, with Python and some packages preinstalled, it will take a minute, once the play button shows up in the top-right corner when you have a 
+3. It will create a new codespace in your github account, with Python and some packages preinstalled, it will take a minute
 4. You should see a web-based VSCode interface, which has the labs as directories
 5. Use the .ipynb versions of the lab code
 6. Open Lab 0 > main.ipynb
