@@ -39,13 +39,21 @@ n = np.random.randn(Nr, N) + 1j*np.random.randn(Nr, N)
 r = r + 0.5*n # Nr x N
 
 w_lms = np.zeros((Nr, 1), dtype=complex)
+error_log = []
 # Loop through each sample in the received signal
 for n in range(0, N):
     x_n = r[:, n].reshape(-1, 1)  # Current input sample
     y_n = w_lms.conj().T @ x_n  # Calculate filter output
     y_n = y_n.reshape(-1,1)  # make into a column vector
     error_lms = soi[0, n] - y_n   # Calculate error
+    error_log.append(np.abs(error_lms)[0,0])  # Store error for plotting
     w_lms += 2*mu * np.conj(error_lms) * x_n
+
+# Plot the error
+plt.plot(10*np.log10(error_log))
+plt.xlabel('Sample Number')
+plt.ylabel('Error [dB]')
+plt.show()
 
 # Plot final LMS beam pattern
 w_lms = np.conj(w_lms)
